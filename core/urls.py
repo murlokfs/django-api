@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from main.views import ProdutoDetailAPIView, ProdutoListCreateAPIView
+from main.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('main.urls')),
-    # path('api/', ProdutoListCreateAPIView.as_view(), name='produto-listcreate'),
-    # path('api/<int:pk>', ProdutoDetailAPIView.as_view(), name='produto-detail'),
+
+    # Urls da API, herdadas de main
+    path('api/v1/', include('main.urls')),
+    path('api/v2/', include('main.v2.urls'))
 ]
