@@ -1,1 +1,1 @@
-# django-simple-crud
+# Django API REST example project
