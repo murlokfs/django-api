@@ -8,9 +8,10 @@
 
 
 # - - - - - Rotas usando Router e ViewSets - - - - - 
-from .views import ProdutoViewSet
+from .views import ProdutoViewSet, ClienteViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'produtos', ProdutoViewSet)
+router.register(r'clientes', ClienteViewSet)
 urlpatterns = router.urls

@@ -9,5 +9,12 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Cliente(models.Model):
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
 
 # Create your models here.
