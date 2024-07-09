@@ -15,11 +15,6 @@ class LojasAPIView(generics.ListCreateAPIView):
     queryset = Loja.objects.all()
     serializer_class = LojaSerializer
 
-    def get_queryset(self):
-        if self.kwargs.get('produto_pk'):
-            return self.queryset.filter(produto_id = self.kwargs.get('produto_pk'))
-        return self.queryset.all()
-
 class LojaAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Loja.objects.all()
     serializer_class = LojaSerializer
