@@ -2,11 +2,13 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('produtos/', ProdutosAPIView.as_view(), name='produtos'),
-    path('produtos/<int:pk>', ProdutoAPIView.as_view(), name='produto'),
-    path('lojas', LojasAPIView.as_view(), name='lojas'),
-    path('lojas/<int:pk>', LojaAPIView.as_view(), name='loja'),
-    # path('lojas/<int:loja_pk>/produtos/', LojasAPIView.as_view(), name='loja-produtos'),
-    # path('lojas/<int:loja_pk>/produtos/<int:produto_pk>', LojaAPIView.as_view(), name='loja-produtos-detail'),
+    path('', ProdutoListView.as_view(), name='list-produto'),
+    path('produtos/novo/', ProdutoCreateView.as_view(), name='create-produto'),
+    path('produtos/<int:pk>/editar/', ProdutoUpdateView.as_view(), name='update-produto'),
+    path('produtos/<int:pk>/deletar/', ProdutoDeleteView.as_view(), name='delete-produto'),
+    
+    path('vendas/', VendaListView.as_view(), name='list-venda'),
+    path('vendas/novo/', VendaCreateView.as_view(), name='create-venda'),
+    path('vendas/<int:pk>/editar/', VendaUpdateView.as_view(), name='update-venda'),
+    path('vendas/<int:pk>/deletar/', VendaDeleteView.as_view(), name='delete-venda'),
 ]
-

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <header class="container">
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'list-produto' %}">Produtos</a></li>
+                <li><a href="{% url 'list-venda' %}">Vendas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>{% block form_title %}Título do Formulário{% endblock %}</h2>
+        
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {% block form_content %}
+            <!-- Campos do formulário aqui -->
+            {% endblock %}
+        </form>
+    </main>
+
+    <footer class="container">
+        <p>Django API REST Framework</p>
+    </footer>
+</body>
+</html>

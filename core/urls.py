@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import *
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Urls da API, herdadas de main
-    path('api/v1/', include('main.urls')),
-    path('api/v2/', include('main.v2.urls'))
-]
+    path('', include('main.urls')), # URLS DE MAIN
+    path('api/v2/', include('main.api.v2.urls')) # API V2
+] + debug_toolbar_urls()

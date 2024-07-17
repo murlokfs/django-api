@@ -1,6 +1,17 @@
 from .models import Produto, Loja
 from rest_framework import serializers
 
+# class TaskSerializer(serializers.ModelSerializer):
+#     is_completed = serializers.ReadOnlyField()
+#     time_to_complete = serializers.ReadOnlyField()
+
+#     class Meta:
+#         model = Task
+#         fields = [
+#             'id', 'title', 'description', 'created_at', 'updated_at', 'completed_at', 'user', 'status'
+#             ]
+
+
 class LojaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loja
@@ -10,9 +21,6 @@ class LojaSerializer(serializers.ModelSerializer):
         ]
 
 class ProdutoSerializer(serializers.ModelSerializer):
-
-    # loja = LojaSerializer(read_only=True)
-    # loja = serializers.HyperlinkedRelatedField(read_only=True ,view_name='loja-detail')
 
     class Meta:
         model = Produto

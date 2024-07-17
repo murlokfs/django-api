@@ -1,0 +1,35 @@
+{% load cache %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    
+    <header class="container">
+        <h1>Projeto de Estudo DRF</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'list-produto' %}">Produtos</a></li>
+                <li><a href="{% url 'list-venda' %}">Vendas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        <!-- Conteúdo da página -->
+        {% endblock %}
+    </main>
+
+    <footer class="container">
+        <p>Django API REST Framework</p>
+    </footer>
+
+</body>
+</html>

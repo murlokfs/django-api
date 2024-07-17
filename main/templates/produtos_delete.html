@@ -1,0 +1,15 @@
+{% extends "base_form.html" %}
+
+{% block title %}Listagem de Vendas{% endblock %}
+
+{% block form_title %}Tem certeza que deseja deletar o produto: {{produto.nome}}?{% endblock %}
+
+{% block form_content %}
+<section id="read" class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Sim</button>
+        <a href="{% url 'list-venda' %}">Cancelar</a>
+    </form>
+</section>
+{% endblock %}

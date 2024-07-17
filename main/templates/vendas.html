@@ -1,0 +1,51 @@
+{% extends "base_index.html" %}
+
+{% block title %}Listagem de Vendas{% endblock %}
+
+{% block content %}
+<section id="read" class="container">
+    <h2>Lista de Vendas</h2>
+
+    <p><strong>Vendas Concluídas:</strong> {{num_concluidas}}</p>
+    <p><strong>Atualizado às</strong> {{now}}</p>
+    <p><strong>Total:</strong> R${{ total_concluidas }}</p>
+    <table role="grid" class="table striped hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venda in vendas %}
+            <tr>
+                <td>{{ venda.id }}</td>
+                <td>{{ venda.produto.nome }}</td>
+                <td>{{ venda.quantidade }}</td>
+                <td>R$ {{ venda.valor }}</td>
+                <td>
+                    {% if venda.status == 'em_andamento' %}
+                        <i class="bi bi-hourglass-split text-warning" title="Em andamento"> Em andamento</i>
+                    {% elif venda.status == 'concluido' %}
+                        <i class="bi bi-check-circle text-success" title="Concluído"> Concluído</i>
+                    {% elif venda.status == 'reembolsado' %}
+                        <i class="bi bi-arrow-counterclockwise text-danger" title="Reembolsado"> Re-embolsado</i>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'update-venda' venda.id %}" role="button" class="contrast outline small">Editar</a>
+                    <a href="{% url 'delete-venda' venda.id %}" role="button" class="contrast small">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'create-venda' %}" role="button" class="contrast">Cadastrar Venda</a>
+
+</section>
+{% endblock %}

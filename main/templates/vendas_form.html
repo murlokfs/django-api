@@ -1,0 +1,15 @@
+{% extends "base_form.html" %}
+
+{% block title %}Listagem de Vendas{% endblock %}
+
+{% block form_title %}Cadastrar Venda{% endblock %}
+
+{% block form_content %}
+<section id="read" class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+{% endblock %}
