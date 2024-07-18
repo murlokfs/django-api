@@ -1,5 +1,7 @@
+from typing import Any, Iterable
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # class User(AbstractUser):
 #     pass
@@ -54,3 +56,17 @@ class Venda(models.Model):
 
     def __str__(self):
         return f'ID: {self.pk}'
+    
+    def save (self, *args, **kwargs):
+        if self.quantidade > self.produto.estoque:
+            raise ValidationError(f'O produto não possui estoque suficiente. (Estoque: {self.produto.estoque})')
+        elif self.status == 'em_andamento':
+            self.produto.estoque -= self.quantidade
+            self.produto.save()
+        elif self.status == 'concluido':
+            self.produto.save()
+        elif self.status == 'reembolsado':
+            self.produto.estoque += self.quantidade
+            self.produto.save()
+
+        super(Venda, self).save(*args, **kwargs)

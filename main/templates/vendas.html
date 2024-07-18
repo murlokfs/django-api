@@ -33,12 +33,21 @@
                     {% elif venda.status == 'concluido' %}
                         <i class="bi bi-check-circle text-success" title="Concluído"> Concluído</i>
                     {% elif venda.status == 'reembolsado' %}
-                        <i class="bi bi-arrow-counterclockwise text-danger" title="Reembolsado"> Re-embolsado</i>
+                        <i class="bi bi-x-circle" title="Reembolsado"> Re-embolsado</i>
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'update-venda' venda.id %}" role="button" class="contrast outline small">Editar</a>
+                    
+                    {% if venda.status != 'reembolsado' %}          
+                    <a href="{% url 'update-venda' venda.id %}" role="button" class="contrast outline small">Atualizar</a>
+                    {% endif %}
+                    
+                    {% if venda.status == 'em_andamento' %}
                     <a href="{% url 'delete-venda' venda.id %}" role="button" class="contrast small">Excluir</a>
+                    {% endif %}
+                        
+
+                     
                 </td>
             </tr>
             {% endfor %}

@@ -1,11 +1,13 @@
-from celery import shared_task
+from celery import Celery
 from .models import Venda
 from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)
 
-@shared_task
+app = Celery('main')
+
+@app.task
 def atualizar_vendas_pendentes():
     try:
         vendas_pendentes = Venda.objects.filter(status='em_andamento')
