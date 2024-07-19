@@ -1,0 +1,16 @@
+# ------ Celery Worker
+celery -A core worker --loglevel=info
+
+ - Windows:
+celery -A core worker --loglevel=info -P solo
+# ------
+
+
+# ------ Celery Beat
+celery -A core beat --loglevel=info
+# ------
+
+
+# ------ Flower
+celery -A core flower --broker=redis://localhost:6379/0
+# ------

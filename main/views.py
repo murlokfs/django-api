@@ -1,6 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 import random
 from datetime import datetime
@@ -19,7 +20,6 @@ class ProdutoListView(generic.ListView):
         # produtos_total = self.get_queryset().all().count() # Requisição antiga de retornar a quantidade total de produtos no banco
         produtos_total = context['paginator'].count # Requisição nova, contando a partir do contexto que já existe, paginator.
         now = datetime.now().strftime("%H:%M:%S")
-        print(produtos_total, now)
         context["produtos_total"] = produtos_total
         context["now"] = now
         return context
@@ -34,6 +34,11 @@ class ProdutoCreateView(generic.CreateView):
     form_class = ProdutoForm
     template_name = "produtos_form.html"
     success_url = reverse_lazy('list-produto')
+
+    def form_valid(self, ProdutoForm):
+        cache.clear()
+        return super().form_valid(ProdutoForm)
+    
 
 class ProdutoUpdateView(generic.UpdateView):
     model = Produto

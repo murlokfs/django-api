@@ -107,6 +107,9 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Fortaleza'
+CELERY_TASK_TRACK_STARTED = True
+CELERYD_LOG_FILE = os.path.join(
+    BASE_DIR, 'celery', 'logs') 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

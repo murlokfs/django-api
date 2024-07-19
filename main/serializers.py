@@ -2,9 +2,6 @@ from .models import Produto, Loja
 from rest_framework import serializers
 
 # class TaskSerializer(serializers.ModelSerializer):
-#     is_completed = serializers.ReadOnlyField()
-#     time_to_complete = serializers.ReadOnlyField()
-
 #     class Meta:
 #         model = Task
 #         fields = [
