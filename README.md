@@ -86,7 +86,7 @@ celery -A core beat --loglevel=info
 
 ### (Opcional) Iniciar o Flower
 
-Para iniciar o scheduler do Celery (Celery Beat), execute o comando:
+Para iniciar dashboard do Flower, execute o comando:
 
 ```bash
 celery -A core flower --broker=redis://localhost:6379/0
