@@ -20,11 +20,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'atualizar_vendas_pendentes': {
         'task': 'main.tasks.atualizar_vendas_pendentes',
-        'schedule': 30.0,  # segundos
-    },
-    'teste_task': {
-        'task': 'main.tasks.teste_task',
-        'schedule': 500.0,  # segundos
+        'schedule': 60*15,  # 15 minutos
     },
 }
 
