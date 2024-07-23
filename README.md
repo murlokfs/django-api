@@ -1,6 +1,6 @@
 # Django REST API Repositório de Estudo
 
-Este repositório contém um projeto de estudo de uma API REST desenvolvida com Django. Ele é ideal para aprender a configurar e trabalhar com APIs em Django, bem como para integrar ferramentas como Celery e Redis.
+Este repositório contém um projeto de estudo de uma API REST desenvolvida com Django.
 
 ## Pré-requisitos
 
