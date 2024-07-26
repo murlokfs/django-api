@@ -13,4 +13,4 @@ class LojaAdmin(admin.ModelAdmin):
 
 @admin.register(Venda)
 class VendaAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'quantidade', 'valor']
+    list_display = ['pk', 'quantidade', 'valor', 'criado_em']

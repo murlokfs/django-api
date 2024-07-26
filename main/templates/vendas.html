@@ -34,12 +34,16 @@
                         <i class="bi bi-check-circle text-success" title="Concluído"> Concluído</i>
                     {% elif venda.status == 'reembolsado' %}
                         <i class="bi bi-x-circle" title="Reembolsado"> Re-embolsado</i>
+                    {% elif venda.status == 'expirado' %}
+                        <i class="bi bi-x-circle" title="Reembolsado"> Expirado</i>
                     {% endif %}
                 </td>
                 <td>
                     
-                    {% if venda.status != 'reembolsado' %}          
+                    {% if venda.status != 'reembolsado' %}
+                    {% if venda.status != 'expirado' %}
                     <a href="{% url 'update-venda' venda.id %}" role="button" class="contrast outline small">Atualizar</a>
+                    {% endif %}
                     {% endif %}
                     
                     {% if venda.status == 'em_andamento' %}

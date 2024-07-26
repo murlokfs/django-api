@@ -1,21 +1,24 @@
+import random
+from datetime import datetime
+
+from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse
-from django.views import generic
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.core.cache import cache
+from django.views import generic
 from django.views.decorators.cache import cache_page
-import random
-from .tasks import *
-from datetime import datetime
-from .models import *
+
 from .forms import *
+from .models import *
+from .tasks import *
+
 
 class ProdutoListView(generic.ListView):
     queryset = Produto.objects.all().select_related('loja').order_by('-criado_em') # Queryset otimizada
     # queryset = Produto.objects.all().order_by('-criado_em') # Queryset antiga
     template_name = "produtos.html"
     context_object_name = 'produtos'
-    paginate_by = 10 
+    paginate_by = 10
 
     # @method_decorator(cache_page(10)) # Cache aplicado à pagina, renovado a cada 15s
     # def dispatch(self, request, *args, **kwargs):
@@ -43,7 +46,7 @@ class ProdutoListView(generic.ListView):
         context["cache"] = cache.get("cache")
         return context
 
-    
+
 class ProdutoCreateView(generic.CreateView):
     model = Produto
     form_class = ProdutoForm
@@ -79,6 +82,7 @@ class VendaListView(generic.ListView):
         total_concluidas = sum(venda.valor for venda in self.get_queryset().select_related('produto') if venda.status == 'concluido')
         num_concluidas = Venda.objects.filter(status='concluido').count
         now = datetime.now().strftime("%H:%M:%S")
+        
         context['total_concluidas'] = total_concluidas
         context['num_concluidas'] = num_concluidas
         context["now"] = now

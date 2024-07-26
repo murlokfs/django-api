@@ -1,4 +1,14 @@
-/venv
-/media
+#Django
+venv
+media
 db.sqlite3
+*.log
+*.pot
+*.pyc
+__pycache__
+
+#Celery
 celerybeat*
+
+#Extras
+anotacoes.txt

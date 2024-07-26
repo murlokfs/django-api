@@ -1,7 +1,8 @@
 from typing import Any, Iterable
+
 from django.contrib.auth.models import AbstractUser
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
 
 # class User(AbstractUser):
 #     pass
@@ -22,7 +23,6 @@ from django.core.exceptions import ValidationError
 
 #     def __str__(self):
 #         return self.title
-
 
 class Loja(models.Model):
     nome = models.CharField(max_length=50)
@@ -46,13 +46,15 @@ class Venda(models.Model):
     STATUSCHOICES = (
         ('em_andamento', 'Em andamento'),
         ('concluido', 'Concluido'),
+        ('expirado', 'Expirado'),
         ('reembolsado', 'Re-embolsado')
     )
 
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    criado_em = models.DateField(auto_now_add=True)
     quantidade = models.PositiveIntegerField()
     valor = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=12, choices=STATUSCHOICES, default=STATUSCHOICES[0:0])
+    status = models.CharField(max_length=12, choices=STATUSCHOICES, default=STATUSCHOICES[0:0]) # type: ignore
 
     def __str__(self):
         return f'ID: {self.pk}'
